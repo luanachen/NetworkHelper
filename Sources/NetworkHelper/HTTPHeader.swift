@@ -1,6 +1,6 @@
 import Foundation
 
-enum HTTPHeader {
+public enum HTTPHeader {
 
     case contentType(String)
     case accept(String)

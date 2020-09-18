@@ -1,6 +1,6 @@
 import Foundation
 
-protocol APIClient {
+public protocol APIClient {
     
     var session: URLSession { get }
     func fetch<T: Decodable>(with request: URLRequest, decode: @escaping (Decodable) -> T?,

@@ -1,6 +1,6 @@
 import Foundation
 
-protocol EndpointType {
+public protocol EndpointType {
     var base: String { get }
     var path: String { get }
 }

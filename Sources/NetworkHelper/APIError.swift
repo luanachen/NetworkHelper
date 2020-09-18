@@ -1,6 +1,6 @@
 import Foundation
 
-enum APIError: Error {
+public enum APIError: Error {
     case invalidData
     case jsonDecodingFailure
     case responseUnsuccessful(description: String)
