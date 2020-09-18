@@ -7,7 +7,7 @@ public protocol APIClient {
                              completion: @escaping (Result<T, APIError>) -> Void)
 }
 
-extension APIClient {
+public extension APIClient {
     typealias JSONTaskCompletionHandler = (Decodable?, APIError?) -> Void
     
     private func decodingTask<T: Decodable>(with request: URLRequest, decodingType: T.Type,

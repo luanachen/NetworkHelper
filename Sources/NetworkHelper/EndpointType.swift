@@ -5,7 +5,7 @@ public protocol EndpointType {
     var path: String { get }
 }
 
-extension EndpointType {
+public extension EndpointType {
     var components: URLComponents {
         if var components = URLComponents(string: base) {
             components.path = path
