@@ -8,6 +8,7 @@ public enum APIError: Error {
     case requestFailed(description: String)
     case jsonConversionFailure(description: String)
     case postParametersEncodingFailure(description: String)
+    case encodeError(description: String)
 
     var customDescription: String {
         switch self {
@@ -18,6 +19,7 @@ public enum APIError: Error {
         case .jsonConversionFailure(let description): return "APIError - JSON Conversion Failure -> \(description)"
         case .decodingTaskFailure(let description): return "APIError - decodingtask failure with error -> \(description)"
         case .postParametersEncodingFailure(let description): return "APIError - post parameters failure -> \(description)"
+        case .encodeError(let description): return "APIError - encode failure -> \(description)"
         }
     }
 }

@@ -22,4 +22,17 @@ public extension EndpointType {
         fatalError("Failed to set URL!")
     }
 
+    func postRequest<T: Encodable>(parameters: T, headers: [HTTPHeader]) -> URLRequest? {
+        var request = self.request
+        request.httpMethod = HTTPMethod.post.rawValue
+        do {
+            request.httpBody = try JSONEncoder().encode(parameters)
+        } catch let error {
+            print(APIError.encodeError(description: "\(error)").customDescription)
+            return nil
+        }
+        headers.forEach { request.addValue($0.header.value, forHTTPHeaderField: $0.header.field) }
+        return request
+    }
+
 }
