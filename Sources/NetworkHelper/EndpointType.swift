@@ -35,7 +35,9 @@ public extension EndpointType {
         var request = self.request
         request.httpMethod = HTTPMethod.post.rawValue
         do {
-            request.httpBody = try JSONEncoder().encode(parameters)
+            let encoder = JSONEncoder()
+            encoder.keyEncodingStrategy = .convertToSnakeCase
+            request.httpBody = try encoder.encode(parameters)
         } catch let error {
             print(APIError.encodeError(description: "\(error)").customDescription)
             return nil
