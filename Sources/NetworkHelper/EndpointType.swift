@@ -3,12 +3,23 @@ import Foundation
 public protocol EndpointType {
     var base: String { get }
     var path: String { get }
+    var parameters: [String : Any]? { get }
+    var pathparam: String? { get }
 }
 
 public extension EndpointType {
     var components: URLComponents {
         if var components = URLComponents(string: base) {
-            components.path = path
+            if let paramPath = pathparam {
+                    components.path = path + "\(paramPath)"
+                }
+            if let parameters = parameters, !parameters.isEmpty {
+                    components.queryItems = [URLQueryItem]()
+                    for (key, value) in parameters {
+                        let queryItem = URLQueryItem(name: key, value: "\(value)")
+                        components.queryItems!.append(queryItem)
+                    }
+                }
             return components
         }
         fatalError("Fail to set components!")
